@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation - Cab Booking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚕 Cab Booking System</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="goToDashboard()" class="logout-btn">Dashboard</button>
+            </div>
+        </div>
+
+        <div class="payment-confirmation-container">
+            <!-- Success Icon -->
+            <div class="payment-success-icon">✅</div>
+            
+            <!-- Title and Subtitle -->
+            <h1 class="payment-confirmation-title">Payment Successful!</h1>
+            <p class="payment-confirmation-subtitle">Your payment has been processed successfully</p>
+            
+            <!-- Success Message -->
+            <div style="text-align: center; margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, #d4edda, #c3e6cb); border-radius: 12px; border: 1px solid #28a745;">
+                <h3 style="color: #155724; margin-bottom: 0.5rem;">🎉 Thank you for your payment!</h3>
+                <p style="color: #155724; margin: 0;">Your ride has been successfully paid for. You can download the receipt and rate your driver from your ride history.</p>
+            </div>
+
+            <!-- Single Action Button -->
+            <div class="payment-actions">
+                <button onclick="goToDashboard()" class="btn-primary" style="width: 100%; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600;">
+                    🏠 Back to Dashboard
+                </button>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="payment-confirmation.js"></script>
+</body>
+</html>

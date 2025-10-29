@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Your Driver - Cab Booking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚕 Cab Booking System</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="goToDashboard()" class="logout-btn">Dashboard</button>
+            </div>
+        </div>
+
+        <div class="rating-submission-container">
+            <!-- Header -->
+            <div class="rating-header">
+                <h1 class="rating-title">⭐ Rate Your Driver</h1>
+                <p class="rating-subtitle">Help us improve our service by rating your experience</p>
+            </div>
+
+            <!-- Trip Summary -->
+            <div class="trip-summary-card">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Trip Summary</h3>
+                <div class="trip-route">
+                    <div class="trip-location" id="pickupLocation">Pickup Location</div>
+                    <div class="trip-arrow">→</div>
+                    <div class="trip-location" id="dropLocation">Drop Location</div>
+                </div>
+                <div class="trip-details-grid">
+                    <div class="trip-detail-item">
+                        <div class="trip-detail-value" id="tripDistance">0 km</div>
+                        <div class="trip-detail-label">Distance</div>
+                    </div>
+                    <div class="trip-detail-item">
+                        <div class="trip-detail-value" id="tripFare">₹0</div>
+                        <div class="trip-detail-label">Fare</div>
+                    </div>
+                    <div class="trip-detail-item">
+                        <div class="trip-detail-value" id="tripDate">-</div>
+                        <div class="trip-detail-label">Date</div>
+    </div>
+                </div>
+            </div>
+
+            <!-- Driver Information -->
+            <div class="driver-info">
+                <div class="driver-avatar" id="driverAvatar">D</div>
+                <div class="driver-details">
+                    <h4 id="driverName">Driver Name</h4>
+                    <p id="driverInfo">Vehicle details</p>
+                </div>
+            </div>
+
+            <!-- Rating Form -->
+            <div class="rating-form-section">
+                <div class="rating-question">How was your ride experience?</div>
+                
+                <div class="star-rating-large" id="starRatingLarge">
+                    <span class="star-large" data-rating="1">⭐</span>
+                    <span class="star-large" data-rating="2">⭐</span>
+                    <span class="star-large" data-rating="3">⭐</span>
+                    <span class="star-large" data-rating="4">⭐</span>
+                    <span class="star-large" data-rating="5">⭐</span>
+                </div>
+                
+                <div class="rating-labels-large">
+                    <span>Poor</span>
+                    <span>Fair</span>
+                    <span>Good</span>
+                    <span>Very Good</span>
+                    <span>Excellent</span>
+                </div>
+
+                <div class="comment-section-large">
+                    <label for="ratingCommentLarge">Share your experience (optional):</label>
+                    <textarea 
+                        id="ratingCommentLarge" 
+                        placeholder="Tell us about your ride experience, driver behavior, vehicle condition, etc..."
+                        rows="4"
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="rating-submission-actions">
+                <button onclick="submitRating()" class="btn-primary" id="submitRatingBtn">
+                    ⭐ Submit Rating
+                </button>
+                <button onclick="skipRating()" class="btn-secondary">
+                    Skip for Now
+                </button>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="rating-submission.js"></script>
+</body>
+</html>

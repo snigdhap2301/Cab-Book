@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideSync </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> User Dashboard</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="window.location.href='change-password.html'" class="btn-secondary" style="margin-right: 10px;">Change Password</button>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('book-ride')">Book Ride</button>
+            <button class="nav-tab" onclick="showTab('my-rides')">My Rides</button>
+            <button class="nav-tab" onclick="showTab('ride-history')">Ride History</button>
+        </div>
+
+        <!-- Book Ride Tab -->
+        <div id="book-ride" class="tab-content active">
+            <div class="section">
+                <h2> Book a New Ride</h2>
+                <form id="bookRideForm">
+                    <div class="form-group">
+                        <label for="pickupLocation"> Pickup Location:</label>
+                        <input type="text" id="pickupLocation" placeholder="Enter pickup location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dropLocation">Drop Location:</label>
+                        <input type="text" id="dropLocation" placeholder="Enter drop location" required>
+                    </div>
+                    <button type="button" onclick="calculateFare()" class="btn-primary">Calculate Fare</button>
+                </form>
+
+                <div id="fareResult" class="fare-result" style="display: none;">
+                    <h3>Trip Details</h3>
+                    <div class="fare-details">
+                        <div class="fare-item">
+                            <div class="label">Distance</div>
+                            <div class="value"><span id="distance"></span> km</div>
+                        </div>
+                        <div class="fare-item">
+                            <div class="label">Estimated Fare</div>
+                            <div class="value">₹<span id="fare"></span></div>
+                        </div>
+                    </div>
+                    <button onclick="bookRide()" class="book-btn"> Confirm Booking</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Rides Tab -->
+        <div id="my-rides" class="tab-content">
+            <div class="section">
+                <h2>My Rides</h2>
+                <div id="myRides" class="rides-container">
+                    <!-- Rides will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Ride History Tab -->
+        <div id="ride-history" class="tab-content">
+            <div class="section">
+                <h2>Ride History</h2>
+                <div id="rideHistoryContainer" class="rides-container">
+                    <!-- Ride history will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="payment-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"> Choose Payment Method</h3>
+                    <span class="close" onclick="closePaymentModal()">&times;</span>
+                </div>
+                <div class="payment-methods">
+                    <label class="payment-method" for="upi">
+                        <input type="radio" id="upi" name="paymentMethod" value="UPI">
+                        <div class="payment-method-info">
+                            <div class="payment-method-name"> UPI</div>
+                            <div class="payment-method-desc"></div>
+                        </div>
+                    </label>
+                    <label class="payment-method" for="credit">
+                        <input type="radio" id="credit" name="paymentMethod" value="CREDIT_CARD">
+                        <div class="payment-method-info">
+                            <div class="payment-method-name"> Credit Card</div>
+                            <div class="payment-method-desc">Pay using your credit card</div>
+                        </div>
+                    </label>
+                    <label class="payment-method" for="debit">
+                        <input type="radio" id="debit" name="paymentMethod" value="DEBIT_CARD">
+                        <div class="payment-method-info">
+                            <div class="payment-method-name"> Debit Card</div>
+                            <div class="payment-method-desc">Pay using your debit card</div>
+                        </div>
+                    </label>
+                    <label class="payment-method" for="cash">
+                        <input type="radio" id="cash" name="paymentMethod" value="CASH">
+                        <div class="payment-method-info">
+                            <div class="payment-method-name"> Cash</div>
+                            <div class="payment-method-desc">Pay cash to the driver</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button onclick="processPayment()" class="btn-primary" id="payNowButton">Pay Now</button>
+                    <button onclick="closePaymentModal()" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rating Modal -->
+        <div id="ratingModal" class="rating-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">⭐ Rate Your Driver</h3>
+                    <span class="close" onclick="closeRatingModal()">&times;</span>
+                </div>
+                <div class="rating-content">
+                    <div class="driver-info" id="driverInfo">
+                        <div class="driver-avatar"></div>
+                        <div class="driver-details">
+                            <h4 id="driverName">Driver Name</h4>
+                            <p id="rideDetails">Ride details</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rating-section">
+                        <h4>How was your ride?</h4>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">⭐</span>
+                            <span class="star" data-rating="2">⭐</span>
+                            <span class="star" data-rating="3">⭐</span>
+                            <span class="star" data-rating="4">⭐</span>
+                            <span class="star" data-rating="5">⭐</span>
+                        </div>
+                        <div class="rating-labels">
+                            <span>Poor</span>
+                            <span>Excellent</span>
+                        </div>
+                    </div>
+                    
+                    <div class="comment-section">
+                        <label for="ratingComment">Add a comment (optional):</label>
+                        <textarea id="ratingComment" placeholder="Share your experience with other passengers..." rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button onclick="submitRatingFromModal()" class="btn-primary" id="submitRatingButton">Submit Rating</button>
+                    <button onclick="closeRatingModal()" class="btn-secondary">Skip</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="user-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideSync</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Driver Dashboard</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="window.location.href='change-password.html'" class="btn-secondary" style="margin-right: 10px;">Change Password</button>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Driver Availability Toggle -->
+        <div class="availability-section">
+            <div class="availability-toggle">
+                <div class="availability-info">
+                    <span class="availability-label">Status:</span>
+                    <span id="availabilityStatus" class="status-badge offline">Offline</span>
+                </div>
+                <div class="toggle-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="availabilityToggle" onchange="toggleAvailability()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-text">Go Online</span>
+                </div>
+            </div>
+            <div id="availabilityMessage" class="availability-message"></div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('ride-requests')">Ride Requests</button>
+            <button class="nav-tab" onclick="showTab('my-rides')">My Rides</button>
+            <button class="nav-tab" onclick="showTab('earnings')">Profile Summary</button>
+        </div>
+
+        <!-- Ride Requests Tab -->
+        <div id="ride-requests" class="tab-content active">
+            <div class="section">
+                <h2>New Ride Requests</h2>
+                <div id="rideRequests" class="rides-container">
+                    <!-- Ride requests will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- My Rides Tab -->
+        <div id="my-rides" class="tab-content">
+            <div class="section">
+                <h2>Active Rides</h2>
+                <div id="myRides" class="rides-container">
+                    <!-- Rides will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings Tab -->
+        <div id="earnings" class="tab-content">
+            <div class="section">
+                <h2> Summary</h2>
+                <div id="earningsContainer" class="rides-container">
+                    <!-- Earnings will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="driver-dashboard.js"></script>
+</body>
+</html>

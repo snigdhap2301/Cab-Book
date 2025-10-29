@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideSync</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RideSync</h1>
+        </div>
+
+        <div class="auth-container">
+            <!-- Login Form -->
+            <div id="login-form" class="form-section">
+                <h2>Login</h2>
+                <form id="loginForm" onsubmit="return handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" id="loginButton">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register-form" class="form-section" style="display: none;">
+                <h2>Register</h2>
+                <form id="registerForm" onsubmit="return handleRegistration(event)">
+                    <div class="form-group">
+                        <label for="userType">User Type:</label>
+                        <select id="userType" required onchange="toggleDriverFields()">
+                            <option value="">Select User Type</option>
+                            <option value="PASSENGER">Passenger</option>
+                            <option value="DRIVER">Driver</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerName">Name:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPhone">Phone:</label>
+                        <input type="tel" id="registerPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                        <div class="password-requirements">
+                            <small>Password must be at least 6 characters long</small>
+                        </div>
+                    </div>
+
+                    <!-- Driver specific fields -->
+                    <div id="driver-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="vehicleNumber">Vehicle Number:</label>
+                            <input type="text" id="vehicleNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="licenseNumber">License Number:</label>
+                            <input type="text" id="licenseNumber">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="registerButton">Register</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
