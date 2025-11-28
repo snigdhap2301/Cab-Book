@@ -1,4 +1,4 @@
-# Cab-Book 🚕
+# Cab-Book
 
 A simple, full-stack cab booking app I built to learn how ride-hailing systems work end-to-end. It uses Spring Boot on the backend (JWT auth) and a lightweight HTML/CSS/JavaScript frontend. 
 
